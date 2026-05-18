@@ -30,9 +30,15 @@ class Note(BaseModel):
 
     ispinned : Mapped[bool] = mapped_column(Boolean,default=False)
 
+    version : Mapped[int] = mapped_column(Integer,default=1)
+
     is_deleted : Mapped[bool] = mapped_column(Boolean,default=False)
 
     owner=relationship("User",back_populates="notes")
+
+    shared_notes = relationship("SharedNote", back_populates="note", cascade="all, delete-orphan")
+
+    versions = relationship("NoteVersion", back_populates="note", cascade="all, delete-orphan")
 
 
 

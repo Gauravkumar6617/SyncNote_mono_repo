@@ -11,3 +11,8 @@ class StatusEnum(str,enum.Enum):
     COMPLETED="completed"
     DELETED="deleted"
     ARCHIVED="archived"
+
+class RoleEnum(str,enum.Enum):
+    USER="user"
+    ADMIN="admin"
+    EDIT="editor"
