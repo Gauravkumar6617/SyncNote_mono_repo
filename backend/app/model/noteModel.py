@@ -30,6 +30,8 @@ class Note(BaseModel):
 
     ispinned : Mapped[bool] = mapped_column(Boolean,default=False)
 
+    is_deleted : Mapped[bool] = mapped_column(Boolean,default=False)
+
     owner=relationship("User",back_populates="notes")
 
 

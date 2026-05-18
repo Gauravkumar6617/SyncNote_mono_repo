@@ -20,7 +20,14 @@ class User(BaseModel):
     is_active : Mapped[bool] = mapped_column(Boolean,default=True)
     is_verified : Mapped[bool] = mapped_column(Boolean,default=False)
 
+
+
+
+    # relation of user with others
+
     notes = relationship("Note",back_populates="owner",cascade="all,delete-orphan")
+    folders = relationship("Folder",back_populates="folder",cascade="all,delete-orphan")
+
 
        
  
