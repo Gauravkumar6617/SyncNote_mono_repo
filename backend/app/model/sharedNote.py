@@ -1,6 +1,6 @@
 import enum
-from sqlalchemy import Column, String, ForeignKey
-from sqlalchemy.orm import relationship ,Mapped, mapped_column , Enum
+from sqlalchemy import Column, String, ForeignKey, Enum
+from sqlalchemy.orm import relationship ,Mapped, mapped_column
 from  app.model.BaseModel import BaseModel
 from .enumModel import RoleEnum
 
@@ -11,7 +11,7 @@ class SharedNote(BaseModel):
     shared_with_user_id : Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     shared_by_user_id : Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
 
-    permission : Mapped[RoleEnum] = mapped_column(Enum(RoleEnum), default=RoleEnum.VIEW, nullable=False)
+    permission : Mapped[RoleEnum] = mapped_column(Enum(RoleEnum), default=RoleEnum.EDIT, nullable=False)
 
     # Relationships
     note = relationship("Note", back_populates="shared_notes")
