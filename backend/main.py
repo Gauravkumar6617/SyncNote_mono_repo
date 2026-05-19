@@ -1,6 +1,11 @@
-def main():
-    print("Hello from backend!")
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from app.core.db.session import engine , Base
 
+app = FastAPI()
 
-if __name__ == "__main__":
-    main()
+Base.metadata.create_all(bind=engine)
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
