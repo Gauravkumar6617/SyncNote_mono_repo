@@ -16,6 +16,7 @@ class User(BaseModel):
 
     password_hash :Mapped[str] = mapped_column(String(255),nullable=False)
     auth_provider : Mapped[AuthProvider] = mapped_column(Enum(AuthProvider),default=AuthProvider.LOCAL) #login type
+    provider_id : Mapped[str | None] = mapped_column(String(255),unique=True, nullable=True) #for social login
 
     is_active : Mapped[bool] = mapped_column(Boolean,default=True)
     is_verified : Mapped[bool] = mapped_column(Boolean,default=False)
