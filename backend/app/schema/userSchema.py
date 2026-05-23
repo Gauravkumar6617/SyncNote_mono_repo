@@ -1,12 +1,6 @@
 from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
-
-
-class AuthProvider(str):
-    GOOGLE = "google"
-    # FACEBOOK = "facebook" not implemented yet
-    GITHUB = "github"
-    LOCAL = "local"
+from app.model.userModel import AuthProvider
 
 class UserBase(BaseModel):
     email: EmailStr

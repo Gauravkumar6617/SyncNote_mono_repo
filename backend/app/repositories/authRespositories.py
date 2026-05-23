@@ -13,7 +13,7 @@ class AuthRepository:
         final_hash = None
         if password_hash:
             final_hash = password_hash
-        elif hasattr(user_create, "password") and user_create.password:
+        elif hasattr(user_create, "password") and user_create.password: # in this hasattr check we are checking if the user_create object has the password attribute and if it is not None or empty
             final_hash = hash_password(user_create.password)
 
         new_user = User(

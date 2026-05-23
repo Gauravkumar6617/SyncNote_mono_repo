@@ -10,6 +10,16 @@ Base.metadata.create_all(bind=engine)
 async def root():
     return {"message": "Hello World"}
 
+
+
+from app.api.v1.endpoint import authEndpoint as auth_router
+
+
+
+app.include_router(auth_router.router)
+
+
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Adjust this in production to restrict origins

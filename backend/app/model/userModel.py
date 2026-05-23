@@ -28,6 +28,7 @@ class User(BaseModel):
 
     notes = relationship("Note",back_populates="owner",cascade="all,delete-orphan")
     folders = relationship("Folder",back_populates="folder",cascade="all,delete-orphan")
+    notifications = relationship("Notification", back_populates="user", cascade="all, delete-orphan")
     refresh_tokens = relationship("RefreshToken", back_populates="user", cascade="all, delete-orphan")
 
 
