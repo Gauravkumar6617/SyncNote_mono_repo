@@ -1,0 +1,11 @@
+// prisma/schemas/user.prisma
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique                  // Ensures no two users can register with the same email
+  password  String                            // Will store our securely hashed password string
+  name      String?                           // The "?" means this field is optional
+  createdAt DateTime @default(now())
+
+
+}

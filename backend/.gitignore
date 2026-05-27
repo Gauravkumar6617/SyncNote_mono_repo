@@ -1,42 +1,41 @@
-# Dependencies
+# --- DEPLOYMENT & CORE DEPENDENCIES ---
 node_modules/
-package-lock.json
-pnpm-lock.yaml
+.pnpm-debug.log
+dist/
+build/
 
-# Environment variables
+# --- ENVIRONMENT VARIABLES & SECRETS ---
 .env
 .env.local
-.env.*.local
 .env.dev
-.env.example
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+# NOTE: .env.example should NOT be ignored, keep it unlisted here so teams see template configurations!
 
-# IDE
+# --- PRISMA 7 & LOCAL SQLITE ---
+prisma/*.db
+prisma/*.db-journal
+
+# --- SYSTEM & ENVIRONMENT CLUTTER ---
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 .DS_Store
+Thumbs.db
 
-# Logs
+# --- LOGS & DIAGNOSTICS ---
 logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Build
-dist/
-build/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Testing
+# --- TESTING DATA ---
 coverage/
 .nyc_output/
-
-# Temporary files
 tmp/
 temp/
