@@ -1,11 +1,18 @@
+model User {
+  id           String        @id @default(uuid())
+  username     String        @unique
+  password     String
 
-model User{
-  id String @id @default(uuid())
-  username String @unique
-  password String 
-  Status AccountStatus @default(Pending)
-  is_verified Boolen @default(False)
-  email String @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  status       AccountStatus @default(PENDING)
+  is_verified  Boolean       @default(false)
+
+  auth_by      AuthProvider  @default(LOCAL)
+  auth_id      String?
+
+  avatar_url   String?
+
+  email        String        @unique
+
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
 }

@@ -1,11 +1,10 @@
-enum AuthProvider{
-    GOOGLE
-    GITHUB
-    Local
+enum AccountStatus {
+  PENDING
+  ACTIVE
+  BLOCKED
 }
-
-enum AccountStatus{
-    Active
-    Pending
-    Suspended
+enum AuthProvider {
+  LOCAL
+  GOOGLE
+  GITHUB
 }
