@@ -1,0 +1,11 @@
+enum AuthProvider{
+    GOOGLE
+    GITHUB
+    Local
+}
+
+enum AccountStatus{
+    Active
+    Pending
+    Suspended
+}
