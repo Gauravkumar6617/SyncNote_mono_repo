@@ -1,0 +1,13 @@
+model NoteVersion {
+    id String @id @default(uuid())
+    title String
+    noteId String
+    note Note @relation(fields: [noteId], references: [id])
+
+    editBy String
+    edit User @relation(fields: [editBy], references: [id])
+
+    createdAt  DateTime @default(now())
+    updatedAt DateTime @default(now())
+    
+}

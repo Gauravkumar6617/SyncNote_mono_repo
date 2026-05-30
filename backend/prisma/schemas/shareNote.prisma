@@ -1,10 +1,16 @@
-model ShareNote{
+model ShareNote {
     id String @id @default(uuid())
+    permission PERMISSION @default(VIEW)
+
     noteId String
     note Note @relation(fields: [noteId], references: [id])
-    sharedWithEmail String
+
+    sharedWithId String
+    sharedWith User @relation("SharedWithUser", fields: [sharedWithId], references: [id])
+
     sharedById String
-    sharedBy User @relation(fields: [sharedById], references: [id])
-    createdAt  DateTime @default(now())
-    updatedAt  DateTime @default(now())
+    sharedBy User @relation("SharedByUser", fields: [sharedById], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }

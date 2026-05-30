@@ -9,9 +9,15 @@ model Note {
   user       User @relation(fields: [userId], references: [id])
 
   folderId    String?
-  folder     Folder @relation(fields :[folderId], references: [id])
+  folder     Folder? @relation(fields :[folderId], references: [id])
 
   shares     ShareNote[]
+  comments   Comment[]
+  versions   NoteVersion[]
+  activity   ActivityLog[] 
+
+@@index([userId])
+@@index([folderId])
 
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt

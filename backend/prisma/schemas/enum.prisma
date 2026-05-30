@@ -8,3 +8,15 @@ enum AuthProvider {
   GOOGLE
   GITHUB
 }
+
+enum PERMISSION{
+  VIEW
+  EDIT
+}
+enum ActivityAction {
+  CREATE_NOTE
+  UPDATE_NOTE
+  DELETE_NOTE
+  SHARE_NOTE
+  COMMENT_NOTE
+}
