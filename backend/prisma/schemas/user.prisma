@@ -15,4 +15,10 @@ model User {
 
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
+
+  notes Note[]
+  folders Folder[]
+  notifications Notification[]
+  sharedNotes ShareNote[] @relation("SharedByUser")
+  
 }

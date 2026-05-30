@@ -1,0 +1,18 @@
+model Note {
+  id         String   @id @default(uuid())
+  title      String
+  content    String
+  note_image String?
+  tag        String?
+
+  userId     String
+  user       User @relation(fields: [userId], references: [id])
+
+  folderId    String?
+  folder     Folder @relation(fields :[folderId], references: [id])
+
+  shares     ShareNote[]
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
