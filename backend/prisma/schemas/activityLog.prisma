@@ -1,0 +1,15 @@
+model ActivityLog {
+  id        String @id @default(uuid())
+
+  action    ActivityAction
+  oldValue String?
+  newValue String?
+
+  userId    String
+  user      User @relation(fields: [userId], references: [id])
+
+  noteId    String?
+  note      Note? @relation(fields: [noteId], references: [id])
+
+  createdAt DateTime @default(now())
+}

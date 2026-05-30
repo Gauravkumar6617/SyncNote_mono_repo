@@ -1,0 +1,14 @@
+model Comment{
+    id String @id @default(uuid())
+
+    comment String?
+
+    noteId String
+    note Note @relation(fields: [noteId], references: [id])
+
+    commentedById String
+    commentedBy User @relation(fields: [commentedById], references: [id])   
+
+    createdAt  DateTime @default(now())
+    updatedAt DateTime @default(now()) 
+}

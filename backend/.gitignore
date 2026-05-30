@@ -1,13 +1,41 @@
-# Python-generated files
-__pycache__/
-*.py[oc]
-build/
+# --- DEPLOYMENT & CORE DEPENDENCIES ---
+node_modules/
+.pnpm-debug.log
 dist/
-wheels/
-*.egg-info
+build/
 
-# Virtual environments
-.venv
-
-#env 
+# --- ENVIRONMENT VARIABLES & SECRETS ---
+.env
+.env.local
 .env.dev
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+# NOTE: .env.example should NOT be ignored, keep it unlisted here so teams see template configurations!
+
+# --- PRISMA 7 & LOCAL SQLITE ---
+prisma/*.db
+prisma/*.db-journal
+
+# --- SYSTEM & ENVIRONMENT CLUTTER ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# --- LOGS & DIAGNOSTICS ---
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- TESTING DATA ---
+coverage/
+.nyc_output/
+tmp/
+temp/
