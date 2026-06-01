@@ -10,6 +10,7 @@ import errorHandler from "./middleware/errorHandler";
 import logger from "./utils/logger";
 import routes from "./routes";
 import cookieParser from "cookie-parser";
+import authRoutes from "./routes/auth.route";
 
 // Explicitly type the Express application instance
 const app: Application = express();
@@ -44,6 +45,7 @@ app.get("/", (req: Request, res: Response): void => {
 
 // API Routes
 app.use(config.API_PREFIX, routes);
+app.use("/auth", authRoutes);
 
 // 404 Handler for unregistered endpoints
 app.use((req: Request, res: Response): void => {
