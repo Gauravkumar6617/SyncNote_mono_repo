@@ -3,28 +3,29 @@
  * Main app configuration and middleware setup
  */
 
-import express from "express";
-import config from "./config/environment.js";
-import corsMiddleware from "./middleware/corsMiddleware.js";
-import errorHandler from "./middleware/errorHandler.js";
-import logger from "./utils/logger.js";
-import routes from "./routes/index.js";
+import express, { Application, Request, Response, NextFunction } from "express";
+import config from "./config/environment";
+import corsMiddleware from "./middleware/corsMiddleware";
+import errorHandler from "./middleware/errorHandler";
+import logger from "./utils/logger";
+import routes from "./routes";
 
-const app = express();
+// Explicitly type the Express application instance
+const app: Application = express();
 
-// Middleware
+// Core Middlewares
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 app.use(corsMiddleware);
 
-// Request Logging Middleware
-app.use((req, res, next) => {
+// Request Logging Middleware with strict parameter typing
+app.use((req: Request, res: Response, next: NextFunction): void => {
   logger.debug(`${req.method} ${req.path}`);
   next();
 });
 
 // Root endpoint - Welcome page
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response): void => {
   res.status(200).json({
     success: true,
     message: "Welcome to SyncNote Backend",
@@ -42,8 +43,8 @@ app.get("/", (req, res) => {
 // API Routes
 app.use(config.API_PREFIX, routes);
 
-// 404 Handler
-app.use((req, res) => {
+// 404 Handler for unregistered endpoints
+app.use((req: Request, res: Response): void => {
   res.status(404).json({
     success: false,
     statusCode: 404,
