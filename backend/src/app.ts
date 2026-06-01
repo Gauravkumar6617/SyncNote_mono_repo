@@ -9,6 +9,7 @@ import corsMiddleware from "./middleware/corsMiddleware";
 import errorHandler from "./middleware/errorHandler";
 import logger from "./utils/logger";
 import routes from "./routes";
+import cookieParser from "cookie-parser";
 
 // Explicitly type the Express application instance
 const app: Application = express();
@@ -17,6 +18,7 @@ const app: Application = express();
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 app.use(corsMiddleware);
+app.use(cookieParser());
 
 // Request Logging Middleware with strict parameter typing
 app.use((req: Request, res: Response, next: NextFunction): void => {
