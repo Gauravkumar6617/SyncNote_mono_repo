@@ -1,0 +1,2 @@
+// This file has been consolidated into schema.prisma
+// User model is now defined in the main schema.prisma file

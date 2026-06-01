@@ -27,6 +27,9 @@ importers:
       prisma:
         specifier: ^7.8.0
         version: 7.8.0(@types/react@19.2.15)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      prisma-multischema:
+        specifier: ^1.1.4
+        version: 1.1.4
 
 packages:
 
@@ -538,6 +541,10 @@ packages:
   postgres@3.4.7:
     resolution: {integrity: sha512-Jtc2612XINuBjIl/QTWsV5UvE8UHuNblcO3vVADSrKsrc6RqGX6lOW1cEo3CM2v0XG4Nat8nI+YM7/f26VxXLw==}
     engines: {node: '>=12'}
+
+  prisma-multischema@1.1.4:
+    resolution: {integrity: sha512-38tQy7T8yIfdGNAOjhLuP/ZrmdWaPaYXPE1au7rLHDm5h5GFHFAtouVD2ihsSnXT0L1VSWd/yxNUOlsvKOcFZQ==}
+    hasBin: true
 
   prisma@7.8.0:
     resolution: {integrity: sha512-yfN4yrw7HV9kEJhoy1+jgah0jafEIQsf7uWouSsM8MvJtlubsk+kM7AIBWZ8+GJl74Yj3c+nbYqBkMOxtsZ3Lw==}
@@ -1207,6 +1214,8 @@ snapshots:
       pathe: 2.0.3
 
   postgres@3.4.7: {}
+
+  prisma-multischema@1.1.4: {}
 
   prisma@7.8.0(@types/react@19.2.15)(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:

@@ -6,10 +6,6 @@
 import app from "./src/app.js";
 import config from "./src/config/environment.js";
 import logger from "./src/utils/logger.js";
-import {
-  connectDatabase,
-  disconnectDatabase,
-} from "./src/services/database.js";
 
 const PORT = config.PORT;
 const HOST = config.HOST;
@@ -19,9 +15,6 @@ const HOST = config.HOST;
  */
 const startServer = async () => {
   try {
-    // Connect to database
-    await connectDatabase();
-
     const server = app.listen(PORT, HOST, () => {
       logger.info(`
     ================================

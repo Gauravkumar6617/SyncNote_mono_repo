@@ -1,0 +1,173 @@
+//🧩Don't Edit this file.✨Generated in Sun May 31 2026 15:18:24 GMT+0530 (India Standard Time)✨
+model ActivityLog {
+  id String @id @default(uuid())
+
+  action   ActivityAction
+  oldValue String?
+  newValue String?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  noteId String?
+  note   Note?   @relation(fields: [noteId], references: [id])
+
+  createdAt DateTime @default(now())
+}
+
+model Comment {
+  id String @id @default(uuid())
+
+  comment String?
+
+  noteId String
+  note   Note   @relation(fields: [noteId], references: [id])
+
+  commentedById String
+  commentedBy   User   @relation(fields: [commentedById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+enum AccountStatus {
+  PENDING
+  ACTIVE
+  BLOCKED
+}
+
+enum AuthProvider {
+  LOCAL
+  GOOGLE
+  GITHUB
+}
+
+enum PERMISSION {
+  VIEW
+  EDIT
+}
+
+enum ActivityAction {
+  CREATE_NOTE
+  UPDATE_NOTE
+  DELETE_NOTE
+  SHARE_NOTE
+  COMMENT_NOTE
+}
+
+model Folder {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  notes Note[]
+}
+
+model Note {
+  id         String  @id @default(uuid())
+  title      String
+  content    String
+  note_image String?
+  tag        String?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  folderId String?
+  folder   Folder? @relation(fields: [folderId], references: [id])
+
+  shares   ShareNote[]
+  comments Comment[]
+  versions NoteVersion[]
+  activity ActivityLog[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([folderId])
+}
+
+model NoteVersion {
+  id     String @id @default(uuid())
+  title  String
+  noteId String
+  note   Note   @relation(fields: [noteId], references: [id])
+
+  editBy String
+  edit   User   @relation(fields: [editBy], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  type      String
+  message   String
+  userId    String
+  isRead    Boolean  @default(false)
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model ShareNote {
+  id         String     @id @default(uuid())
+  permission PERMISSION @default(VIEW)
+
+  noteId String
+  note   Note   @relation(fields: [noteId], references: [id])
+
+  sharedWithId String
+  sharedWith   User   @relation("SharedWithUser", fields: [sharedWithId], references: [id])
+
+  sharedById String
+  sharedBy   User   @relation("SharedByUser", fields: [sharedById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id          String        @id @default(uuid())
+  username    String        @unique
+  password    String
+  isDeleted   Boolean       @default(false)
+  status      AccountStatus @default(PENDING)
+  is_verified Boolean       @default(false)
+
+  auth_by AuthProvider @default(LOCAL)
+  auth_id String?
+
+  avatar_url String?
+
+  email String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  notes         Note[]
+  folders       Folder[]
+  comments      Comment[]
+  notifications Notification[]
+  noteVersions  NoteVersion[]
+  activities    ActivityLog[]
+
+  sharedByMe   ShareNote[] @relation("SharedByUser")
+  sharedWithMe ShareNote[] @relation("SharedWithUser")
+}
