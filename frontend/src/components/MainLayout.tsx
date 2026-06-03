@@ -1,47 +1,61 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { PATHS } from "../routes/path";
+import "../styles/layout.css";
 
 export const MainLayout = () => {
   const location = useLocation();
 
   const navItems = [
-    { name: "Dashboard", path: PATHS.PRIVATE.DASHBOARD },
-    { name: "My Notes", path: PATHS.PRIVATE.NOTES },
+    { name: "Dashboard", path: PATHS.PRIVATE.DASHBOARD, icon: "📊" },
+    { name: "Notes", path: PATHS.PRIVATE.NOTES, icon: "📝" },
+    { name: "Shared", path: PATHS.PRIVATE.SHARED_NOTES, icon: "👥" },
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
-      {/* Shared Application Header */}
-      <nav className="bg-slate-900 border-b border-slate-800 px-6 py-4 flex justify-between items-center">
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#ff5b04]" />
-          <span className="font-bold text-xl tracking-tight text-white">
-            SyncNote
-          </span>
+    <div className="layout-container">
+      {/* Header */}
+      <header className="layout-header">
+        <div className="header-left">
+          <Link to={PATHS.PRIVATE.DASHBOARD} className="logo">
+            <span className="logo-icon">✨</span>
+            <span className="logo-text">SyncNote</span>
+          </Link>
         </div>
-        <div className="flex gap-6">
+
+        <nav className="header-nav">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
             return (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-sm font-medium transition-colors ${
-                  isActive
-                    ? "text-[#ff5b04]"
-                    : "text-slate-400 hover:text-slate-200"
-                }`}
+                className={`nav-item ${isActive ? "active" : ""}`}
+                title={item.name}
               >
-                {item.name}
+                <span className="nav-icon">{item.icon}</span>
+                <span className="nav-label">{item.name}</span>
               </Link>
             );
           })}
-        </div>
-      </nav>
+        </nav>
 
-      {/* Dynamic Content Viewport */}
-      <main className="flex-1 p-6 max-w-7xl w-full mx-auto">
-        <Outlet /> {/* Target area where your pages will render */}
+        <div className="header-right">
+          <button className="header-btn">🔔</button>
+          <button className="header-btn">⚙️</button>
+          <div className="profile-menu">
+            <button className="profile-btn">👤</button>
+            <div className="profile-dropdown">
+              <a href="#profile">Profile</a>
+              <a href="#settings">Settings</a>
+              <a href="#logout">Logout</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="layout-main">
+        <Outlet />
       </main>
     </div>
   );

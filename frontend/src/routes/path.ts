@@ -2,11 +2,13 @@ export const PATHS = {
   PUBLIC: {
     HOME: "/",
     LOGIN: "/login",
-    SIGNUP: "/signup",
+    REGISTER: "/register",
   },
   PRIVATE: {
-    DASHBOARD: "/",
+    DASHBOARD: "/dashboard",
     NOTES: "/notes",
+    NOTE_EDITOR: "/notes/:id",
+    SHARED_NOTES: "/shared",
     SETTINGS: "/settings",
   },
 };

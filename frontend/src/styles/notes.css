@@ -1,0 +1,354 @@
+/* Notes Pages Styling */
+
+.notes-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.notes-header {
+  background: white;
+  padding: 24px;
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.notes-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.search-bar {
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 16px 12px 40px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+.notes-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.notes-sidebar {
+  width: 240px;
+  background: white;
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.filters h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.folder-list,
+.tags-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.folder-btn,
+.tag-btn {
+  padding: 10px 12px;
+  border: none;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+}
+
+.folder-btn:hover,
+.tag-btn:hover {
+  background: var(--bg-tertiary);
+}
+
+.folder-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
+.folder-icon {
+  font-size: 16px;
+}
+
+.sidebar-link {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--text-primary);
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.sidebar-link:hover {
+  border-color: var(--primary);
+  background: #f0f4ff;
+}
+
+.notes-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.notes-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+}
+
+.note-count {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.toolbar-right {
+  display: flex;
+  gap: 8px;
+}
+
+.view-toggle {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--text-secondary);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+.view-toggle:hover {
+  border-color: var(--secondary);
+}
+
+.view-toggle.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.notes-grid {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.notes-grid.list-view {
+  grid-template-columns: 1fr;
+}
+
+/* Note Card */
+.note-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  transition: all 0.2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.note-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 12px 24px rgba(99, 102, 241, 0.15);
+  transform: translateY(-4px);
+}
+
+.note-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.note-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.note-menu-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0 4px;
+  transition: color 0.2s;
+}
+
+.note-menu-btn:hover {
+  color: var(--primary);
+}
+
+.note-preview {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.note-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.tag {
+  background: #f0f4ff;
+  color: var(--primary);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.note-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.note-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.folder-label,
+.date-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.shared-indicator {
+  background: #dbeafe;
+  color: #0369a1;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.note-card.list-item {
+  height: auto;
+  flex-direction: row;
+  align-items: center;
+}
+
+.note-card.list-item .note-card-header {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+.note-card.list-item .note-preview {
+  display: none;
+}
+
+.note-card.list-item .note-tags {
+  margin-bottom: 0;
+}
+
+/* Empty State */
+.empty-state {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.empty-state h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
