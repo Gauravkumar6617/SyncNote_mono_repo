@@ -4,6 +4,7 @@ import { MainLayout } from "../components/MainLayout";
 import { PATHS } from "./path";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
+import LandingPage from "../pages/LandingPage";
 
 // Dynamic imports for optimized build chunking
 const DashboardPage = lazy(() => import("../pages/DashboardPage"));
@@ -27,6 +28,10 @@ const LoadingFallback = () => (
 );
 
 const router = createBrowserRouter([
+  {
+    path: PATHS.PUBLIC.HOME,
+    element: <LandingPage />,
+  },
   {
     path: PATHS.PUBLIC.LOGIN,
     element: <LoginPage />,

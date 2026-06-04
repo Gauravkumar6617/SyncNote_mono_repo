@@ -15,7 +15,7 @@ interface Note {
 }
 
 const NotesListPage: React.FC = () => {
-  const [notes, setNotes] = useState<Note[]>([
+  const [notes] = useState<Note[]>([
     {
       id: "1",
       title: "Project Kickoff Meeting",
