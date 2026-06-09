@@ -12,51 +12,65 @@ export const MainLayout = () => {
   ];
 
   return (
-    <div className="layout-container">
-      {/* Header */}
-      <header className="layout-header">
-        <div className="header-left">
-          <Link to={PATHS.PRIVATE.DASHBOARD} className="logo">
+    <div className="layout-shell">
+      <aside className="sidebar">
+        <div className="sidebar-top">
+          <Link to={PATHS.PRIVATE.DASHBOARD} className="sidebar-logo">
             <span className="logo-icon">✨</span>
             <span className="logo-text">SyncNote</span>
           </Link>
         </div>
 
-        <nav className="header-nav">
+        <nav className="sidebar-nav">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
             return (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`nav-item ${isActive ? "active" : ""}`}
+                className={`sidebar-item ${isActive ? "active" : ""}`}
                 title={item.name}
               >
-                <span className="nav-icon">{item.icon}</span>
-                <span className="nav-label">{item.name}</span>
+                <span className="sidebar-icon">{item.icon}</span>
+                <span className="sidebar-label">{item.name}</span>
               </Link>
             );
           })}
         </nav>
 
-        <div className="header-right">
-          <button className="header-btn">🔔</button>
-          <button className="header-btn">⚙️</button>
-          <div className="profile-menu">
-            <button className="profile-btn">👤</button>
-            <div className="profile-dropdown">
-              <a href="#profile">Profile</a>
-              <a href="#settings">Settings</a>
-              <a href="#logout">Logout</a>
+        <div className="sidebar-footer">
+          <button className="new-note-btn">+ New Note</button>
+        </div>
+      </aside>
+
+      <div className="main-area">
+        <header className="topbar">
+          <div className="topbar-left">
+            <input
+              className="search-input"
+              placeholder="Search notes, folders, tags..."
+            />
+          </div>
+          <div className="topbar-right">
+            <button className="icon-btn">🔔</button>
+            <button className="icon-btn">⚙️</button>
+            <div className="profile-menu">
+              <button className="profile-btn">👤</button>
+              <div className="profile-dropdown">
+                <a href="#profile">Profile</a>
+                <a href="#settings">Settings</a>
+                <a href="#logout">Logout</a>
+              </div>
             </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      {/* Main Content */}
-      <main className="layout-main">
-        <Outlet />
-      </main>
+        <main className="layout-main">
+          <div className="content-container">
+            <Outlet />
+          </div>
+        </main>
+      </div>
     </div>
   );
 };
